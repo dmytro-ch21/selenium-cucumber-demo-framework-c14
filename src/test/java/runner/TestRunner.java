@@ -16,7 +16,11 @@ import org.junit.runner.RunWith;
         // for this we will use "glue" keyword
         // in the glue we will need to provide the package name
         // the package will start in java directory
-        glue = "step_definitions"
+        glue = "step_definitions",
+        // dryRun will check if you have all the steps defined in your feature files
+        // if set to true it will skip the test and just check if all steps are defined
+        // if set to false it will simply run the scripts
+        dryRun = false
 )
 public class TestRunner {
     // there is no code in the class itself
