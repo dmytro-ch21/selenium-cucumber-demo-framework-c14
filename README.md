@@ -1,14 +1,12 @@
 # 📝 Selenium-Cucumber-Demo-Framework Documentation
-
 ---
-
-| Tool     | Intention                            |      Version       |                         Docs                          |
-|:---------|:-------------------------------------|:------------------:|:-----------------------------------------------------:|
-| Java     | Programming Language                 | JDK - 20 or higher |  [JDK20](https://docs.oracle.com/en/java/javase/20/)  |
-| Maven    | Build Tool and Dependency Management |  3.9.5 or higher   | [Maven 3](https://maven.apache.org/guides/index.html) |
-| Selenium | UI Test Automation                   |  4.15.0 or higher  | [Selenium 4](https://www.selenium.dev/documentation/) |
-| JUnit    | Test Framework                       |  4.13.2 or higher  |         [JUnit 4](https://junit.org/junit4/)          |
-| Cucumber | BDD Framework                        | 7.15.0  or higher  |   [Cucumber 7](https://cucumber.io/docs/cucumber/)    |
+| Tool     | Intention                            |  Version   |                          Docs                           |
+|:---------|:-------------------------------------|:----------:|:-------------------------------------------------------:|
+| Java     | Programming Language                 |  JDK - 20  |   [JDK20](https://docs.oracle.com/en/java/javase/20/)   |
+| Maven    | Build Tool and Dependency Management |   3.9.5    |  [Maven 3](https://maven.apache.org/guides/index.html)  |
+| Selenium | UI Test Automation                   |   4.15.0   |  [Selenium 4](https://www.selenium.dev/documentation/)  |
+| JUnit    | Test Framework                       |   4.13.2   |          [JUnit 4](https://junit.org/junit4/)           |
+| Cucumber | BDD Framework                        |   7.15.0   |    [Cucumber 7](https://cucumber.io/docs/cucumber/)     |
 
 ---
 
@@ -18,13 +16,12 @@
     - Java as programming language 🌐
     - Maven as build tool 🛠
     - Git for source version control 🔄
-    - 
 
 2. **Add necessary dependencies** 📦
     - Selenium, JUnit 4, Cucumber - Java, Cucumber - JUnit
 
 3. **Create folder structure** 📁
-    - pages, step_definitions, utilities, runner, resources.features
+    - Pages, Step_definitions, Utilities, Runner, Resources.features
     - ```text
          test
          ├── java
@@ -64,23 +61,23 @@
                 - `dryRun = true/false` options:
                     - If set to true, it checks if all steps in the feature file are defined but doesn't run test cases
                     - If set to false, it runs the test cases and throws an error if steps aren't defined
-                - `tags = "@smoke"` options: we can specify what tag to run with this property
-                  - We can run a specific tag only: `tags = "@smoke"`
-                  - We can run multiple tags: `tags = "@smoke or @regression"`
-                  - We can run scenarios with combination of tags: `tags = "@smoke and @login"`
-                  - We can skip tags: `tags = "@smoke and not @ignore"`
-                    ```java
-                    @RunWith(Cucumber.class)
-                    @CucumberOptions(
+                - `monochrome = true` : makes the console logs more readable
+                - `plugin = {"pretty", "html:target/reports/cucumber-reports.html"}`
+                - `tags = "@smoke"`
+                  ```java
+                  @RunWith(Cucumber.class)
+                  @CucumberOptions(
                       features = "src/test/resources/features",
                       glue = "step_definitions",
+                      monochrome = true,
                       dryRun = false,
-                      tags = ("@runValid and @smoke")
-                    )
-                    public class TestRunner {
-                    // no need to add code here
-                    }
-                    ```
+                      tags = ("@runValid and @smoke"),
+                      plugin = {"pretty", "html:target/reports/cucumber-reports.html"}
+                  )
+                  public class TestRunner {
+                  // no need to add code here
+                  }
+                  ```
 7. **Cucumber Keywords definitions in feature files** 🗝️
     - **`Feature`:** _Short description of the feature to be tested_
         - Examples:
@@ -168,15 +165,15 @@
               the scenario._
               ```gherkin
                   # Example using steps with keywords:
-                      Given user is logged in
-                      And user has items in my cart
-                      When user navigates to the checkout page
-                      Then user should see the total price
-                  # Example using steps with asterisks:
-                      * user is logged in
-                      * user has items in my cart
-                      * user navigates to the checkout page
-                      * user should see the total price
+                      Given I am logged in
+                      And I have items in my cart
+                      When I go to the checkout page
+                      Then I should see the total price
+                  # Example using steps with asteriks:
+                      * I am logged in
+                      * I have items in my cart
+                      * I go to the checkout page
+                      * I should see the total price
               ```
 
 8. > ### More information about Gherkin syntax can be found here:
@@ -184,79 +181,148 @@
 
 ---
 
+## Framework Definition
 
-### Framework Definition
-- Framework - In IT world it used extensively 
-- A framework referees to a set of pre-written code, tools, and guidelines that help us when dealing with a ""problem""
+    In the IT world, the term "framework" is used extensively and refers to a set of pre-written code, tools, and guidelines that aid in software development. To put it in a simpler context:
 
-> Analogy: Building a bookshelf
-- Build by yourself from scratch:
-  - Buy wood, screws
-  - Make measurements 
-  - Painting 
-  - Putting all together 
-- Go to IKEA and get a flatbox of the bookshelf
-  - You get all the materials, tools ready assemble
-  - You also get a guideline how to build it up 
+    ### Analogy: Furnishing with an IKEA Bookshelf
 
-> Framework reality:
-- We can use no framework and that would require us to build all the details from scratch
-- On the other hand, we can use a framework that gives us something to work with 
-  - Also, it will give us guidelines. 
-    - Selenium - gives guidelines and pre-written code for automation
-    - JUnit - gives guidelines how to create and run test cases
-    - Cucumber - gives us guidelines how to write proper Scenarios
+    Imagine you want to furnish your home with a new bookshelf. You have two main options:
 
+- **DIY Approach**: Design and build the bookshelf from scratch. This involves selecting the wood, cutting it to size, sanding, joining, and painting. It requires significant skill, time, and effort.
+- **IKEA Approach**: Buy a bookshelf from IKEA, which comes as a flat-pack with all the pieces pre-cut, holes pre-drilled, and includes the necessary tools and instructions for assembly.
 
+    ### Correlation with IT Frameworks
 
-#### ATDD - acceptance driven development 
+- **Pre-Made Components**:
+    - **IKEA**: Comes with pre-cut pieces.
+    - **IT Framework**: Provides pre-written code and components, saving time and effort.
 
-##### 1. **User Story**: "As a user, I want to reset my password so that I can access my account if I forget my password."
-   **Acceptance Criteria**:
-    - The user should be able to request a password reset from the login page.
-    - The system should send a password reset link to the user's registered email address.
-    - The password reset link should expire after 24 hours.
-    - The user must be able to set a new password using the reset link.
+- **Instructions and Guidelines**:
+    - **IKEA**: Assembly instructions guide the process.
+    - **IT Framework**: Offers guidelines and conventions for structuring code and building applications.
 
-#### BDD - behavior driven development (compliments the ATDD)
-- What bdd suggests is that you describe the AC from the perspective of user
+- **Customization**:
+    - **IKEA**: Allows some customization (e.g., placement, additional decorations).
+    - **IT Framework**: While using pre-built components, customization in functionality and design is possible.
 
-##### 1. **User Story**: "As a user, I want to reset my password so that I can access my account if I forget my password."
+- **Consistency and Quality**:
+    - **IKEA**: Known for consistent quality and design.
+    - **IT Framework**: Ensures a level of consistency and reliability, incorporating best coding practices.
 
-BDD Acceptance Criteria (Scenarios):
+- **Community and Support**:
+    - **IKEA**: Online forums and videos for assistance.
+    - **IT Framework**: Supported by large communities, offering additional tools and resources.
 
-- Scenario: Requesting a password reset
-    - Given user is on the login page
-    - When user clicks on "Forgot Password"
-    - Then user should be prompted to enter my registered email address
-  
-- Scenario: Receiving a password reset email
-    - Given user had requested a password reset
-    - When user enters registered email address
-    - Then user should receive a password reset email within 5 minutes
-  
-- Scenario: Resetting the password using the link
-    - Given user has received a password reset email
-    - When user clicks on the reset link in the email
-    - And users enters a new password
-    - Then user password should be updated, and user should be redirected to the login page
+---
 
+### ATDD vs BDD
 
-### Tags in cucumber 
-- We add a new property to TestRunner CucumberOptions called tags
-- It will have a value as a string 
-- If we include a specific tag like tags = "@smoke" it will run all the scenarios tagged with smoke tag
-- Sometimes we want to run a scenario that has two tags at the same time, we can do it with and operator
-  - tags = "@smoke and @login"
-- Sometimes we want to run scenarios that have any of the tags provided, this can be archived with or operator
-  - tags = "@validLogin or @invalidLogin"
-- You also can disable or ignore certain scenarios 
-  - We can do that with "and not" operator
-  - tags = "@regression and not @brokenScenario"
+#### ATDD (Acceptance Test Driven Development)
 
+- **Approach**: Focuses on defining a user story with acceptance tests (AT), ensuring everyone involved clearly understands the requirements. Developers and Testers then work in parallel to fulfill these criteria.
 
-#### Background Keyword
-We use Background to run a step or steps before each Scenario
+#### BDD (Behavior Driven Development)
+
+- **Approach**: BDD extends ATDD by emphasizing user behaviors and expected outcomes. It involves writing acceptance tests in a language that describes the behavior of the software from the end-user's perspective.
+
+#### Examples
+
+#### ATDD Approach Example
+
+_User Story_: "As a user, I want to reset my password so that I can access my account if I forget it."
+
+_Acceptance Criteria_:
+- Users can initiate a password reset from the login page.
+- A reset link is sent to the user’s registered email, expiring after 24 hours.
+- Users can set a new password using the reset link.
+
+#### BDD Approach Example
+
+_User Story_: "As a user, I want to reset my password to access my account if I forget it."
+
+_Acceptance Criteria_:
+
+```gherkin
+    Scenario: Requesting a password reset
+        Given I am on the login page
+        When I click on "Forgot Password"
+        Then I should enter my registered email
+
+    Scenario: Receiving a password reset email
+        Given I requested a password reset
+        When I submit my email
+        Then I should receive a reset email within 5 minutes
+
+    Scenario: Resetting password using the link
+        Given I received a reset email
+        When I use the link to set a new password
+        Then my password should update and I’m redirected to login
+```
+---
+
+## Cucumber Parametrization
+>Parameterization in Cucumber is a technique used to create data-driven tests, which allows you to run the same test with different sets of data.
+It increases the reusability and flexibility of your tests.
+Here, in given examples we can see the use of different data types like String, Integer, Boolean, and Double.
+
+The idea is that we can pass data directly from the step to methods in step definitions
+
+**String parameters**  
+_Feature file:_
+```gherkin
+    Feature: Login functionality
+
+    Scenario: Logging in with different usernames
+        Given I am on the login page
+        When I enter "my_username" and "password123"
+        Then I should be logged in
+```
+_Step definition:_
+```java
+    @When("I enter {string} and {string}")
+    public void i_enter_username_and_password(String username, String password) {
+    // Code to enter username and password
+    }
+```
+
+**Integer parameters**  
+_Feature file:_
+```gherkin
+Feature: Product quantity selection
+
+  Scenario Outline: Selecting different product quantities
+    Given I have selected a product
+    When I choose a quantity of 25
+    Then the total should be updated accordingly
+```
+_Step definition:_
+```java
+@When("I choose a quantity of {int}")
+public void i_choose_a_quantity_of(int quantity) {
+    // Code to select the quantity
+}
+```
+
+**Double parameters**  
+_Feature file:_
+```gherkin
+Feature: Payment processing
+
+  Scenario Outline: Processing payments of different amounts
+    Given I am making a payment
+    When I enter the amount 55.99
+    Then the payment should be processed
+```
+_Step definition:_
+```java
+@When("I enter the amount {double}")
+public void i_enter_the_amount(double amount) {
+    // Code to enter the payment amount
+}
+```
+
+---
 
 
 
