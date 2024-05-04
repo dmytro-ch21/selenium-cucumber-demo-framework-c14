@@ -64,17 +64,23 @@
                 - `dryRun = true/false` options:
                     - If set to true, it checks if all steps in the feature file are defined but doesn't run test cases
                     - If set to false, it runs the test cases and throws an error if steps aren't defined
-                  ```java
-                  @RunWith(Cucumber.class)
-                  @CucumberOptions(
+                - `tags = "@smoke"` options: we can specify what tag to run with this property
+                  - We can run a specific tag only: `tags = "@smoke"`
+                  - We can run multiple tags: `tags = "@smoke or @regression"`
+                  - We can run scenarios with combination of tags: `tags = "@smoke and @login"`
+                  - We can skip tags: `tags = "@smoke and not @ignore"`
+                    ```java
+                    @RunWith(Cucumber.class)
+                    @CucumberOptions(
                       features = "src/test/resources/features",
                       glue = "step_definitions",
-                      dryRun = false
-                  )
-                  public class TestRunner {
-                  // no need to add code here
-                  }
-                  ```
+                      dryRun = false,
+                      tags = ("@runValid and @smoke")
+                    )
+                    public class TestRunner {
+                    // no need to add code here
+                    }
+                    ```
 7. **Cucumber Keywords definitions in feature files** 🗝️
     - **`Feature`:** _Short description of the feature to be tested_
         - Examples:
@@ -162,18 +168,116 @@
               the scenario._
               ```gherkin
                   # Example using steps with keywords:
-                      Given I am logged in
-                      And I have items in my cart
-                      When I go to the checkout page
-                      Then I should see the total price
-                  # Example using steps with asteriks:
-                      * I am logged in
-                      * I have items in my cart
-                      * I go to the checkout page
-                      * I should see the total price
+                      Given user is logged in
+                      And user has items in my cart
+                      When user navigates to the checkout page
+                      Then user should see the total price
+                  # Example using steps with asterisks:
+                      * user is logged in
+                      * user has items in my cart
+                      * user navigates to the checkout page
+                      * user should see the total price
               ```
 
 8. > ### More information about Gherkin syntax can be found here:
    > [Cucumber - Gherkin Syntax](https://cucumber.io/docs/gherkin/reference/)
 
 ---
+
+
+### Framework Definition
+- Framework - In IT world it used extensively 
+- A framework referees to a set of pre-written code, tools, and guidelines that help us when dealing with a ""problem""
+
+> Analogy: Building a bookshelf
+- Build by yourself from scratch:
+  - Buy wood, screws
+  - Make measurements 
+  - Painting 
+  - Putting all together 
+- Go to IKEA and get a flatbox of the bookshelf
+  - You get all the materials, tools ready assemble
+  - You also get a guideline how to build it up 
+
+> Framework reality:
+- We can use no framework and that would require us to build all the details from scratch
+- On the other hand, we can use a framework that gives us something to work with 
+  - Also, it will give us guidelines. 
+    - Selenium - gives guidelines and pre-written code for automation
+    - JUnit - gives guidelines how to create and run test cases
+    - Cucumber - gives us guidelines how to write proper Scenarios
+
+
+
+#### ATDD - acceptance driven development 
+
+##### 1. **User Story**: "As a user, I want to reset my password so that I can access my account if I forget my password."
+   **Acceptance Criteria**:
+    - The user should be able to request a password reset from the login page.
+    - The system should send a password reset link to the user's registered email address.
+    - The password reset link should expire after 24 hours.
+    - The user must be able to set a new password using the reset link.
+
+#### BDD - behavior driven development (compliments the ATDD)
+- What bdd suggests is that you describe the AC from the perspective of user
+
+##### 1. **User Story**: "As a user, I want to reset my password so that I can access my account if I forget my password."
+
+BDD Acceptance Criteria (Scenarios):
+
+- Scenario: Requesting a password reset
+    - Given user is on the login page
+    - When user clicks on "Forgot Password"
+    - Then user should be prompted to enter my registered email address
+  
+- Scenario: Receiving a password reset email
+    - Given user had requested a password reset
+    - When user enters registered email address
+    - Then user should receive a password reset email within 5 minutes
+  
+- Scenario: Resetting the password using the link
+    - Given user has received a password reset email
+    - When user clicks on the reset link in the email
+    - And users enters a new password
+    - Then user password should be updated, and user should be redirected to the login page
+
+
+### Tags in cucumber 
+- We add a new property to TestRunner CucumberOptions called tags
+- It will have a value as a string 
+- If we include a specific tag like tags = "@smoke" it will run all the scenarios tagged with smoke tag
+- Sometimes we want to run a scenario that has two tags at the same time, we can do it with and operator
+  - tags = "@smoke and @login"
+- Sometimes we want to run scenarios that have any of the tags provided, this can be archived with or operator
+  - tags = "@validLogin or @invalidLogin"
+- You also can disable or ignore certain scenarios 
+  - We can do that with "and not" operator
+  - tags = "@regression and not @brokenScenario"
+
+
+#### Background Keyword
+We use Background to run a step or steps before each Scenario
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

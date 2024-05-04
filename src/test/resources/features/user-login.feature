@@ -1,15 +1,40 @@
+@IBM-5546 @regression
 Feature: Login Functionality
+  This is the description for functionality that we will test
 
-  Scenario: User can login with valid credentials
+  Background: Preliminary steps
     Given user navigates to orangeHrm login page
-    When user logs in with valid username and password
+
+  @validLogin @smoke
+  Scenario: User can login with valid credentials
+    When user logs in with username "yoll-student" and password "Bootcamp5#"
     And user clicks login button
     Then user is redirected to the homepage
     * quit the driver
 
+  @invalidLogin @smoke
   Scenario: User cannot login with invalid credentials
-    Given user navigates to orangeHrm login page
-    When user enter invalid username and password
+    When user logs in with username "invalid" and password "invalid"
     And user clicks login button
-    Then user can see an error message
+    Then user can see an error message "Invalid Credentials"
     * quit the driver
+
+  Scenario: User cannot login with empty username
+    When user logs in with username "" and password "invalid"
+    And user clicks login button
+    Then user can see an error message "Username cannot be empty"
+    * quit the driver
+
+  Scenario: User cannot login with empty password
+    When user logs in with username "invalid" and password ""
+    And user clicks login button
+    Then user can see an error message "Password cannot be empty"
+    * quit the driver
+
+  @run
+  Scenario: Provide different data
+    * this is a string "hello, world!"
+    * this is a double 20.99
+    * this is a integer 100
+    * quit the driver
+
