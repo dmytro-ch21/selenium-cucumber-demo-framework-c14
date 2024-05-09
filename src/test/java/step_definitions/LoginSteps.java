@@ -1,8 +1,8 @@
 package step_definitions;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -58,10 +58,12 @@ public class LoginSteps {
     public void this_is_a_string(String string) {
         System.out.println("This is the string parameter from feature file: " + string);
     }
+
     @Given("this is a double {double}")
     public void this_is_a_double(Double double1) {
         System.out.println("This is the double parameter from feature file: " + double1);
     }
+
     @Given("this is a integer {int}")
     public void this_is_a_integer(Integer int1) {
         System.out.println("This is the integer parameter from feature file: " + int1);
@@ -72,6 +74,5 @@ public class LoginSteps {
         String actualErrorMessage = loginPage.errorMessage.getText();
         Assert.assertEquals("Error message verification failed!", expectedErrorMessage, actualErrorMessage);
     }
-
 
 }
