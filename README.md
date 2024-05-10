@@ -356,6 +356,76 @@ Make sure that table column name matches with placeholder in steps. Otherwise, i
 ---
 
 
+### Data Tables - In cucumber we can pass a larger set of data at once for a step in scenario
+That sets of data can be in different forms - List, Map, List<List>, List<Maps>
+
+Examples:
+- #### Data Table as a List
+```gherkin
+  @listDataTable
+  Example: Data table as a List
+    Given this is a data table as a list
+      | Omar  |
+      | John  |
+      | Merry |
+      | Jane  |
+```
+```java
+    @Given("this is a data table as a list")
+    public void this_is_a_data_table_as_a_list(List<String> names) {
+      // code
+    }
+```
+- #### Data Table as a Map
+```gherkin
+  @mapDataTable
+  Example: Data Table as a Map
+     Given this is a data table as a map
+       | first_name  | Omar |
+       | middle_name | Mark |
+       | last_name   | Ramo |
+```
+```java
+    @Given("this is a data table as a map")
+    public void this_is_a_data_table_as_a_map(Map<String, String> person){
+      // code  
+    }
+```
+- #### Data Table as a List<List<String>>
+```gherkin
+  @listOfListsDataTable
+  Example: Data Table as a List of Lists
+    Given this is a data table as a List of Lists
+      | 12313 | Omar Mark          | Ramo      |
+      | 13684 | Jonathan Pete Moss | Abernathy |
+      | 13724 | test2 nn           | Anotation |
+```
+```java
+    @Given("this is a data table as a List of Lists")
+    public void this_is_a_data_table_as_a_list_of_lists(List<List<String>> employees){
+      // code  
+    }
+```
+
+- #### Data Table as a List<Map<String, String>>
+> Sometimes we need to pass our table with headers and in such cases use List of Maps where the header will be the key an column values as value to the key.
+```gherkin
+@listOfMapsDataTable
+Example: Data Table as a List of Maps
+   Given this is a data table as a List of Maps
+   | id    | first_mid_name     | last_name |
+   | 12313 | Omar Mark          | Ramo      |
+   | 13684 | Jonathan Pete Moss | Abernathy |
+   | 13724 | test2 nn           | Anotation |
+```
+```java
+    @Given("this is a data table as a List of Maps")
+    public void this_is_a_data_table_as_a_list_of_lists(List<Map<String,String>> employees){
+      // code  
+    }
+```
+
+
 
 
 

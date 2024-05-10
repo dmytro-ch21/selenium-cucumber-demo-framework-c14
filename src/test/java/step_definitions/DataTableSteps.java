@@ -1,9 +1,6 @@
 package step_definitions;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
-import org.junit.Assert;
-
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +31,6 @@ public class DataTableSteps {
         }
 
     }
-
 
     @Given("this is a data table as a list of maps")
     public void data_table_as_a_list_of_maps(List<Map<String,String>> employees){
