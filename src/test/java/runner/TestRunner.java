@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
         // if set to true it will skip the test and just check if all steps are defined
         // if set to false it will simply run the scripts
         dryRun = false,
-        tags = "@laptops",
-        plugin = { "pretty", "html:target/reports/cucumber-reports.html" }
+        tags = "@listOfMapsDataTable",
+        plugin = {"html:target/reports/cucumber-reports.html" }
 )
 public class TestRunner {
     // there is no code in the class itself
