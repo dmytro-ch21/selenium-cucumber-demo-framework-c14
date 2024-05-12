@@ -439,7 +439,12 @@ Example: Data Table as a List of Maps
 Next, in order to use the singleton object. We will have to replace all the occurrences of drivers with new implementation Driver.getDriver().
 
 
+#### Hooks
+In cucumber you can use Before and After annotations to make a method execute before or after a scenario, suite, step
+To make this happen we will create a class that will contain them, we will call it Hooks
 
+1. Hooks call has to be in the same package with your step definitions
+2. 
 
 
 
