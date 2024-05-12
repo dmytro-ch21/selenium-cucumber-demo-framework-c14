@@ -11,7 +11,7 @@ Feature: Login Functionality
     When user logs in with username "yoll-student" and password "Bootcamp5#"
     And user clicks login button
     Then user is redirected to the homepage
-    * quit the driver
+#    * quit the driver
 
   # To make a Scenario data driven we call it in cucumber: Scenario Outline or Scenario Template
   # To extract a specific data from examples table will be by using <> - angle brackets
@@ -20,10 +20,10 @@ Feature: Login Functionality
     When user logs in with username "<username>" and password "<password>"
     And user clicks login button
     Then user can see an error message "<errorMessage>"
-    * quit the driver
+#    * quit the driver
     Examples:
       | username | password | errorMessage             | testCase       |
-      | invalid  | invalid  | Invalid credentials      | both invalid   |
+      | invalid  | invalid  | Invalid Credentials      | both invalid   |
       |          | invalid  | Username cannot be empty | username empty |
       | invalid  |          | Password cannot be empty | password empty |
       |          |          | Username cannot be empty | both empty     |

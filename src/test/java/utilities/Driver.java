@@ -1,8 +1,7 @@
 package utilities;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 
 // Singleton design pattern implementation rules
 public class Driver {
@@ -16,9 +15,13 @@ public class Driver {
     // 3. Make a static getter method that will allow to access the private property
     public static WebDriver getDriver(){
         if(driver == null){
-            driver = DriverFactory.getDriver("chrome");
+            driver = DriverFactory.getDriver(ConfigReader.getProperty("browserType"));
         }
         return driver;
+    }
+
+    public static void setDriver(WebDriver driverType){
+        driver = driverType;
     }
 
     // 4. Each singleton dp can be complimented with additional custom logic

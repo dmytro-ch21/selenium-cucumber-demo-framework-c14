@@ -1,3 +1,4 @@
+@regression
 Feature: Homework Feature
 
   @tabs

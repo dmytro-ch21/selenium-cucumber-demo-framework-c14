@@ -444,7 +444,19 @@ In cucumber you can use Before and After annotations to make a method execute be
 To make this happen we will create a class that will contain them, we will call it Hooks
 
 1. Hooks call has to be in the same package with your step definitions
-2. 
+
+
+
+#### SOLID Principles:
+-> S - Single Responsibility Pr.
+
+
+#### We need a configuration file that will store our config data 
+- A common way in Java world is to use .properties files
+- The data there is stored as key value information
+- To retrieve a value we will call it by key.
+
+
 
 
 

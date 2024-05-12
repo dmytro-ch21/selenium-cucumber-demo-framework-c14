@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.DriverFactory;
 
@@ -21,13 +22,13 @@ public class LoginSteps {
 
     @Given("user navigates to orangeHrm login page")
     public void user_navigates_to_orange_hrm_login_page() {
-        Driver.getDriver().get("http://dev-hrm.yoll.io/");
+        Driver.getDriver().get(ConfigReader.getProperty("hrm_url"));
     }
 
     @When("user logs in with valid username and password")
     public void user_logs_in_with_valid_username_and_password() {
-        loginPage.usernameInputBox.sendKeys("yoll-student");
-        loginPage.passwordInputBox.sendKeys("Bootcamp5#");
+        loginPage.usernameInputBox.sendKeys(ConfigReader.getProperty("hrm_username"));
+        loginPage.passwordInputBox.sendKeys(ConfigReader.getProperty("hrm_password"));
     }
 
     @When("user clicks login button")
