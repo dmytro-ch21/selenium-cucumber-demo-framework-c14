@@ -20,10 +20,6 @@ public class Driver {
         return driver;
     }
 
-    public static void setDriver(WebDriver driverType){
-        driver = driverType;
-    }
-
     // 4. Each singleton dp can be complimented with additional custom logic
     public static void quitDriver(){
         if(driver != null){
