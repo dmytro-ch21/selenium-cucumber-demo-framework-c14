@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import utilities.Driver;
 import utilities.DriverFactory;
 
 
@@ -14,13 +15,13 @@ import utilities.DriverFactory;
 
 public class LoginSteps {
 
-    private WebDriver driver = DriverFactory.getDriver("chrome");
-    private LoginPage loginPage = new LoginPage(driver);
-    private HomePage homePage = new HomePage(driver);
+    //private WebDriver driver = DriverFactory.getDriver("chrome");
+    private LoginPage loginPage = new LoginPage();
+    private HomePage homePage = new HomePage();
 
     @Given("user navigates to orangeHrm login page")
     public void user_navigates_to_orange_hrm_login_page() {
-        driver.get("http://dev-hrm.yoll.io/");
+        Driver.getDriver().get("http://dev-hrm.yoll.io/");
     }
 
     @When("user logs in with valid username and password")
@@ -43,7 +44,7 @@ public class LoginSteps {
 
     @Then("quit the driver")
     public void quit_the_driver() {
-        driver.quit();
+        Driver.quitDriver();
     }
 
     @When("user logs in with username {string} and password {string}")

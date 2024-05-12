@@ -426,6 +426,23 @@ Example: Data Table as a List of Maps
 ```
 
 
+### Current Issues that we have in our framework:
+1. Multiple drivers are genning instantiated throughout the execution which leads us to broken tests.
+2. The drivers don't quit automatically 
+3. The configurations like what browser type we need, and what urls to use are hardcoded.
+
+- The solution for the first problem will be Singleton. This will help us create a global object, or in other words we will have one and only driver instance for the whole project.
+
+#### Singleton:
+- Singleton is a design pattern, it is a suggestion how to organize the code in a way that it solves a certain problem. 
+
+Next, in order to use the singleton object. We will have to replace all the occurrences of drivers with new implementation Driver.getDriver().
+
+
+
+
+
+
 
 
 

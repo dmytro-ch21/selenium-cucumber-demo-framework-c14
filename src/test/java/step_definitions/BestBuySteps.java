@@ -4,16 +4,17 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.BestBuySearchPage;
+import utilities.Driver;
 import utilities.DriverFactory;
 
 public class BestBuySteps {
 
-    private WebDriver driver = DriverFactory.getDriver("chrome");
-    private BestBuySearchPage bestBuySearchPage = new BestBuySearchPage(driver);
+    //private WebDriver driver = DriverFactory.getDriver("chrome");
+    private BestBuySearchPage bestBuySearchPage = new BestBuySearchPage();
 
     @Given("user navigates to bestbuy")
     public void user_navigates_to_bestbuy() {
-        driver.navigate().to("https://www.bestbuy.com/");
+        Driver.getDriver().navigate().to("https://www.bestbuy.com/");
     }
 
     @When("user enters {string} in search box")

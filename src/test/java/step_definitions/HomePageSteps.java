@@ -11,8 +11,8 @@ import java.util.List;
 
 public class HomePageSteps {
 
-    private WebDriver driver = DriverFactory.getDriver("chrome");
-    private HomePage homePage = new HomePage(driver);
+    //private WebDriver driver = DriverFactory.getDriver("chrome");
+    private HomePage homePage = new HomePage();
 
 
     @Then("user can see following tabs:")
