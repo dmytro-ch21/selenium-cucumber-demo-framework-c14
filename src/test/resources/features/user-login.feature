@@ -5,6 +5,7 @@ Feature: Login Functionality
   Background: Preliminary steps
     Given user navigates to orangeHrm login page
 
+
   @validLogin @smoke
   Scenario: User can login with valid credentials
     When user logs in with username "yoll-student" and password "Bootcamp5#"

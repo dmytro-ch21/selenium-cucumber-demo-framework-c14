@@ -5,16 +5,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.DriverFactory;
 
 
+
+
 public class LoginSteps {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginSteps.class);
     private WebDriver driver = DriverFactory.getDriver("chrome");
     private LoginPage loginPage = new LoginPage(driver);
     private HomePage homePage = new HomePage(driver);
@@ -47,7 +46,6 @@ public class LoginSteps {
         driver.quit();
     }
 
-
     @When("user logs in with username {string} and password {string}")
     public void user_logs_in_with_username_and_password(String username, String password) {
         loginPage.usernameInputBox.sendKeys(username);
@@ -74,5 +72,8 @@ public class LoginSteps {
         String actualErrorMessage = loginPage.errorMessage.getText();
         Assert.assertEquals("Error message verification failed!", expectedErrorMessage, actualErrorMessage);
     }
+
+
+
 
 }
