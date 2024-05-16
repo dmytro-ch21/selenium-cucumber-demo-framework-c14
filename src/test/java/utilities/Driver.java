@@ -14,6 +14,8 @@ public class Driver {
 
     // 3. Make a static getter method that will allow to access the private property
     public static WebDriver getDriver(){
+        // This method will check if driver is already instantiated, if no it will do so
+        // This is also called Lazy Instantiation
         if(driver == null){
             driver = DriverFactory.getDriver(ConfigReader.getProperty("browserType"));
         }
