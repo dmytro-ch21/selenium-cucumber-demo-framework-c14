@@ -28,9 +28,10 @@ public class Hooks {
     @Before
     public void setUp(){
         // Apply Implicit wait
+        // Implicit wait waits until the element can be located in dom
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         // Maximize the window
-        Driver.getDriver().manage().window().maximize();
+        //Driver.getDriver().manage().window().maximize();
     }
 
     @After
