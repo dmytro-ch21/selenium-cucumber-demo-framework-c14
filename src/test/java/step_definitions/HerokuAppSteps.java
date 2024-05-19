@@ -75,6 +75,4 @@ public class HerokuAppSteps {
         Assert.assertEquals("Message verification failed.", expectedMessage, actualMessage);
     }
 
-
-
 }

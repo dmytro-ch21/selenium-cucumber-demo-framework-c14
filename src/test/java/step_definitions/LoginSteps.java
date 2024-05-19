@@ -4,19 +4,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
-import utilities.DriverFactory;
-
-
-// driver -> Driver.getDriver()
 
 public class LoginSteps {
 
-    //private WebDriver driver = DriverFactory.getDriver("chrome");
     private LoginPage loginPage = new LoginPage();
     private HomePage homePage = new HomePage();
 
@@ -41,11 +35,6 @@ public class LoginSteps {
         String actualWelcomeMessage = homePage.welcomeElement.getText();
         String expectedWelcomeMessage = "Welcome Yoll";
         Assert.assertEquals("User redirect failed!", expectedWelcomeMessage, actualWelcomeMessage);
-    }
-
-    @Then("quit the driver")
-    public void quit_the_driver() {
-        Driver.quitDriver();
     }
 
     @When("user logs in with username {string} and password {string}")
@@ -74,8 +63,5 @@ public class LoginSteps {
         String actualErrorMessage = loginPage.errorMessage.getText();
         Assert.assertEquals("Error message verification failed!", expectedErrorMessage, actualErrorMessage);
     }
-
-
-
 
 }
