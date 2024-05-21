@@ -49,7 +49,6 @@ public class PopUpsPractice {
 //        Assert.assertTrue(isInvisible);
         driver.quit();
     }
-
    /*
     Scenario: Verify user can accept a simple alert
     Given user lands on https://the-internet.herokuapp.com/javascript_alerts
