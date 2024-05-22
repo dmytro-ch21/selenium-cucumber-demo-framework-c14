@@ -16,7 +16,6 @@ import java.time.Duration;
 
 public class PopUpsSteps {
 
-    private final static String EXPECTED_MODAL_TITLE = "THIS IS A MODAL WINDOW";
     private PopUpPage popUpPage = new PopUpPage();
 
     @Given("user lands on Entry Ad Page")
@@ -26,18 +25,14 @@ public class PopUpsSteps {
 
     @When("a pop - up appears")
     public void a_pop_up_appears() {
-
-//        Wait<WebDriver> wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.visibilityOf(popUpPage.modalTitle));
-
         WaitsUtils.waitForVisibilityOfElement(popUpPage.modalTitle, 10);
         Assert.assertTrue("The modal is not visible!", popUpPage.modalTitle.isDisplayed());
     }
 
-    @Then("user is able to see “THIS IS A MODAL WINDOW”")
-    public void user_is_able_to_see_this_is_a_modal_window() {
+    @Then("user is able to see {string}")
+    public void user_is_able_to_see_this_is_a_modal_window(String expectedModalTitle) {
         String actualModalTitle = popUpPage.modalTitle.getText();
-        Assert.assertTrue("The modal title verification failed!", actualModalTitle.equalsIgnoreCase(EXPECTED_MODAL_TITLE));
+        Assert.assertTrue("The modal title verification failed!", actualModalTitle.equalsIgnoreCase(expectedModalTitle));
     }
 
     @Then("user can close the pop up")

@@ -15,4 +15,9 @@ public class WaitsUtils {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForElementToBeClickable(WebElement element, int seconds){
+        Wait<WebDriver> wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
 }
