@@ -20,4 +20,10 @@ public class WaitsUtils {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public static void waitForNumberOfWindows(int numberOfWindows ,int seconds){
+        // Make sure that there are only two windows with waits
+        Wait<WebDriver> wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(numberOfWindows));
+    }
+
 }

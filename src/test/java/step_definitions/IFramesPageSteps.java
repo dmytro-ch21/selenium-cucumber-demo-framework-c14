@@ -11,7 +11,7 @@ import utilities.Driver;
 import utilities.WaitsUtils;
 
 public class IFramesPageSteps {
-
+    private String email = null;
     private IFramesPage iFramesPage = new IFramesPage();
 
     @Given("user lands on expandtesting page")
@@ -45,7 +45,8 @@ public class IFramesPageSteps {
         Driver.getDriver().switchTo().defaultContent();
         Driver.getDriver().switchTo().frame("email-subscribe");
         WaitsUtils.waitForVisibilityOfElement(iFramesPage.emailInputBox, 1);
-        iFramesPage.emailInputBox.sendKeys(iFramesPage.getRandomEmail());
+        email = iFramesPage.getRandomEmail();
+        iFramesPage.emailInputBox.sendKeys(email);
         iFramesPage.emailInputBox.sendKeys(Keys.PAGE_DOWN);
     }
 

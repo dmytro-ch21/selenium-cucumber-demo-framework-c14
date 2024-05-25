@@ -60,6 +60,8 @@ public class IFramesPractice {
         // in order to not hardcode the email we will generate a new with faker
         Faker faker = new Faker();
         emailInputBox.sendKeys(faker.internet().emailAddress());
+        Thread.sleep(5000);
+
         emailInputBox.sendKeys(Keys.PAGE_DOWN);
 
         Thread.sleep(2000);
