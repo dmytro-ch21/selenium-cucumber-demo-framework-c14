@@ -456,8 +456,64 @@ To make this happen we will create a class that will contain them, we will call 
 - The data there is stored as key value information
 - To retrieve a value we will call it by key.
 
+### Today's Topics:
 
+#### Windows and Tabs
+- Windows and tabs can appear for many reasons on the page
+- When a new window is created we need to switch selenium focus to that window
+- We can get ids of each windows with a method called windowHandles()
+- Having that we can switchTo(). window(specificID)
+- Note: Each tab and window will have it's own html document(DOM)
+  - If we need to interact with elements from new window or tab we will have to switch the control to one of them
 
+- getWindowHandle() gives you current window id
+- getWindowHandles() gives a Set of all windows and tabs ids
+
+- we use driver.switchTo.window() to navigate to those windows respectively
+
+#### JS Executor
+- sometimes we might get stuck with some actions that selenium cannot perform
+- In those cases we will use js executor
+- To execute a script we need to:
+  - First create JavaScript object 
+  - Second use executeScript() method where we pass 1st argument as a script and the rest as (WebElements)
+
+Common scripts to run:
+- note how in pure js we will use document to loacte a certain element
+- - document.getElementById("someId").click()
+- in selenium we already have the elements located in the page so we will not need to locate again
+- that's wy we change the document.getElementById() with arguments[0]
+- remember arguments[0] ponts to the arguments that we pass to executeScript() method
+- that argument ios usually the WebElement itself
+- executeScript(arguments[0].click(), homePage.pimTab)
+
+---
+```java
+//arguments[0].click() -click with java script
+JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+jsExecutor.executeScript("arguments[0].click()", homePage.pimTab);
+```
+
+---
+
+```java
+//arguments[0].scrollIntoView() - scroll to a specific web element
+JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+jsExecutor.executeScript("arguments[0].scrollIntoView()", homePage.pimTab); 
+```
+---
+
+```java
+//arguments[0].value = "Some Value" -> changing the element's value attribute
+JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+jsExecutor.executeScript("arguments[0].value = 'Hello World'", loginPage.username); 
+jsExecutor.executeScript("arguments[0].class = 'container'", loginPage.username); 
+jsExecutor.executeScript("arguments[0].id = 'username'", loginPage.username); 
+jsExecutor.executeScript("arguments[0].placeholder = 'Here goes username'", loginPage.username); 
+jsExecutor.executeScript("arguments[0].disabled = false", loginPage.username);
+// same we can do for any other attributes of an html tag, we can change class, id, placeholder, disabled, style
+```
+---
 
 
 

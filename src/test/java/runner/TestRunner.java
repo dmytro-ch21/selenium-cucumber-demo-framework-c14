@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
         // if set to true it will skip the test and just check if all steps are defined
         // if set to false it will simply run the scripts
         dryRun = false,
-        tags = "@window",
+        tags = "@js_scroll",
         plugin = {"html:target/reports/cucumber-reports.html" }
 )
 public class TestRunner {

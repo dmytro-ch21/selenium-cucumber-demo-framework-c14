@@ -4,7 +4,7 @@ Feature: Browser Windows and Tabs Handling
   Example: Get unique identifier of the main window
     Given I land on Demo QA Browser Windows Page
     Then I can retrieve the unique identifier of the main window
-    When I click on "New Button" button
+    When I click on "New Tab" button
     Then a new window is created
     And I can see the content of new tab is "This is a sample page"
     When I close the new tab or window

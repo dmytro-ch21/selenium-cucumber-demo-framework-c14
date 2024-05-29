@@ -20,4 +20,10 @@ public class HomePage {
     @FindBy(css = "div.menu>ul>li>a")
     public List<WebElement> tabs;
 
+    @FindBy(id = "menu_pim_viewPimModule")
+    public WebElement pimTab;
+
+    @FindBy(id = "menu_admin_viewAdminModule")
+    public WebElement adminTab;
+
 }
